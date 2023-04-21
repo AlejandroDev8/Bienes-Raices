@@ -29,7 +29,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedad</a>
+            <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedad</a>
           </div> <!-- .contenido-anuncio -->
         </div> <!-- .anuncio -->
         <div class="anuncio">
@@ -56,7 +56,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedad</a>
+            <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedad</a>
           </div> <!-- .contenido-anuncio -->
         </div> <!-- .anuncio -->
         <div class="anuncio">
@@ -83,7 +83,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedad</a>
+            <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedad</a>
           </div> <!-- .contenido-anuncio -->
         </div> <!-- .anuncio -->
         <div class="anuncio">
@@ -110,7 +110,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedad</a>
+            <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedad</a>
           </div> <!-- .contenido-anuncio -->
         </div> <!-- .anuncio -->
         <div class="anuncio">
@@ -137,7 +137,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedad</a>
+            <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedad</a>
           </div> <!-- .contenido-anuncio -->
         </div> <!-- .anuncio -->
         <div class="anuncio">
@@ -164,7 +164,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedad</a>
+            <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedad</a>
           </div> <!-- .contenido-anuncio -->
         </div> <!-- .anuncio -->
       </div>
