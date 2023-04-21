@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,23 +10,23 @@
   <title>Bienes Raíces</title>
 </head>
 <header class="header <?php echo $inicio ? 'inicio' : ''; ?>">
-    <div class="contenedor contenido-header">
-      <div class="barra">
-        <a href="/bienesraices/index.php">
-          <img src="build/img/logo.svg" alt="Logotipo de Bienes Raíces">
-        </a>
-        <div class="mobile-menu">
-          <img src="build/img/barras.svg" alt="Icono menu responsive">
-        </div>
-        <nav class="navegacion">
-          <a href="nosotros.php">Nosotros</a>
-          <a href="anuncios.php">Anuncios</a>
-          <a href="blog.php">Blog</a>
-          <a href="contacto.php">Contacto</a>
-        </nav>
+  <div class="contenedor contenido-header">
+    <div class="barra">
+      <a href="/bienesraices/index.php">
+        <img src="/bienesraices/build/img/logo.svg" alt="Logotipo de Bienes Raíces">
+      </a>
+      <div class="mobile-menu">
+        <img src="/bienesraices/build/img/barras.svg" alt="Icono menu responsive">
       </div>
-      <?php if($inicio) { ?>
-      <h1>Venta de Casas y Departamentos Exclusivos de Lujo</h1>
-      <?php } ?>
+      <nav class="navegacion">
+        <a href="nosotros.php">Nosotros</a>
+        <a href="anuncios.php">Anuncios</a>
+        <a href="blog.php">Blog</a>
+        <a href="contacto.php">Contacto</a>
+      </nav>
     </div>
-  </header>
+    <?php if ($inicio) { ?>
+    <h1>Venta de Casas y Departamentos Exclusivos de Lujo</h1>
+    <?php } ?>
+  </div>
+</header>
