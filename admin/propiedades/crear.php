@@ -5,12 +5,40 @@ $db = conectarDB();
 
 require '../../includes/funciones.php';
 incluirTemplate('header');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // echo "<pre>";
+  // var_dump($_POST);
+  // echo "</pre>";
+
+  $titulo = $_POST['titulo'];
+  $precio = $_POST['precio'];
+  $descripcion = $_POST['descripcion'];
+  $habitaciones = $_POST['habitaciones'];
+  $wc = $_POST['wc'];
+  $estacionamiento = $_POST['estacionamiento'];
+  $vendedores_id = $_POST['vendedores_id'];
+
+  // Insertar en la base de datos
+
+  $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedores_id) VALUES ('$titulo', '$precio', '$descripcion', $habitaciones, '$wc', '$estacionamiento', '$vendedores_id')";
+
+  // echo $query;
+
+  $resultado = mysqli_query($db, $query);
+
+  if ($resultado) {
+    echo 'Insertado Correctamente';
+  } else {
+    echo 'Error';
+  }
+}
 ?>
 
 <main class="contenedor seccion">
   <h1>Crear</h1>
   <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
-  <form class="formulario">
+  <form class="formulario" method="POST" action="/bienesraices/admin/propiedades/crear.php">
     <fieldset>
       <legend>Información General</legend>
       <label for="titulo">Título:</label>
@@ -33,7 +61,7 @@ incluirTemplate('header');
     </fieldset>
     <fieldset>
       <legend>Vendedor</legend>
-      <select name="vendedor">
+      <select name="vendedores_id">
         <option value="">-- Seleccione --</option>
         <option value="1">Alejandro</option>
         <option value="2">Karen</option>
