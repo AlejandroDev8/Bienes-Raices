@@ -6,6 +6,12 @@ $db = conectarDB();
 require '../../includes/funciones.php';
 incluirTemplate('header');
 
+// Arreglo con mensajes de errores
+
+$errores = [];
+
+// Ejecutar el código después de que el usuario envía el formulario
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // echo "<pre>";
   // var_dump($_POST);
@@ -19,18 +25,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $estacionamiento = $_POST['estacionamiento'];
   $vendedores_id = $_POST['vendedores_id'];
 
-  // Insertar en la base de datos
+  if (!$titulo) {
+    $errores[] = "Debes añadir un título";
+  }
 
-  $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedores_id) VALUES ('$titulo', '$precio', '$descripcion', $habitaciones, '$wc', '$estacionamiento', '$vendedores_id')";
+  if (!$precio) {
+    $errores[] = "Debes añadir un precio";
+  }
 
-  // echo $query;
+  if (strlen($descripcion) < 50) {
+    $errores[] = "La descripción es obligatoria y debe tener al menos 50 caracteres";
+  }
 
-  $resultado = mysqli_query($db, $query);
+  if (!$habitaciones) {
+    $errores[] = "Debes añadir el número de habitaciones";
+  }
 
-  if ($resultado) {
-    echo 'Insertado Correctamente';
-  } else {
-    echo 'Error';
+  if (!$wc) {
+    $errores[] = "Debes añadir el número de baños";
+  }
+
+  if (!$estacionamiento) {
+    $errores[] = "Debes añadir el número de estacionamientos";
+  }
+
+  if (!$vendedores_id) {
+    $errores[] = "Debes seleccionar un vendedor";
+  }
+
+  // echo "<pre>";
+  // var_dump($errores);
+  // echo "</pre>";
+
+  // Revisar que el arreglo de errores esté vacío
+
+  if (empty($errores)) {
+    // Insertar en la base de datos
+
+    $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedores_id) VALUES ('$titulo', '$precio', '$descripcion', $habitaciones, '$wc', '$estacionamiento', '$vendedores_id')";
+
+    // echo $query;
+
+    $resultado = mysqli_query($db, $query);
+
+    if ($resultado) {
+      echo 'Insertado Correctamente';
+    }
   }
 }
 ?>
@@ -38,6 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <main class="contenedor seccion">
   <h1>Crear</h1>
   <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
+
+  <?php foreach ($errores as $error) : ?>
+  <div class="alerta error">
+    <?php echo $error; ?>
+  </div>
+  <?php endforeach; ?>
+
+
   <form class="formulario" method="POST" action="/bienesraices/admin/propiedades/crear.php">
     <fieldset>
       <legend>Información General</legend>
