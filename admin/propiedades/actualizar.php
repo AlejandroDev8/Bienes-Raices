@@ -12,6 +12,11 @@ if (!$id) {
 require '../../includes/config/database.php';
 $db = conectarDB();
 
+// Obtener los datos de la propiedad
+$consulta = "SELECT * FROM propiedades WHERE id = ${id}";
+$resultado = mysqli_query($db, $consulta);
+$propiedad = mysqli_fetch_assoc($resultado);
+
 // Consultar para obtener los vendedores
 
 $consulta = "SELECT * FROM vendedores";
@@ -24,13 +29,14 @@ incluirTemplate('header');
 
 $errores = [];
 
-$titulo = '';
-$precio = '';
-$descripcion = '';
-$habitaciones = '';
-$wc = '';
-$estacionamiento = '';
-$vendedores_id = '';
+$titulo = $propiedad['titulo'];
+$precio = $propiedad['precio'];
+$descripcion = $propiedad['descripcion'];
+$habitaciones = $propiedad['habitaciones'];
+$wc = $propiedad['wc'];
+$estacionamiento = $propiedad['estacionamiento'];
+$vendedores_id = $propiedad['vendedores_id'];
+$imagenPropiedad = $propiedad['imagen'];
 
 // Ejecutar el código después de que el usuario envía el formulario
 
@@ -58,10 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if (!$precio) {
     $errores[] = "Debes añadir un precio";
-  }
-
-  if (!$imagen['name'] || $imagen['error']) {
-    $errores[] = "La imagen es obligatoria";
   }
 
   if (!$descripcion) {
@@ -100,8 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if (empty($errores)) {
 
-    /** SUBIDA DE ARCHIVOS **/
-
     // Crear carpeta
 
     $carpetaImagenes = '../../imagenes/';
@@ -110,17 +110,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       mkdir($carpetaImagenes);
     }
 
-    // Generar un nombre único
+    $nombreImagen = '';
 
-    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+    /** SUBIDA DE ARCHIVOS **/
 
-    // Subir la imagen
+    if ($imagen['name']) {
 
-    move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+      // Eliminar la imagen previa
+      unlink($carpetaImagenes . $propiedad['imagen']);
+
+      // Generar un nombre único
+
+      $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+      // Subir la imagen
+
+      move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+    } else {
+      $nombreImagen = $propiedad['imagen'];
+    }
 
     // Insertar en la base de datos
 
-    $query = "CALL insertar_datos('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedores_id')";
+    $query = "UPDATE propiedades SET titulo = '${titulo}', precio = '${precio}', imagen ='${nombreImagen}', descripcion = '${descripcion}', habitaciones = ${habitaciones}, wc = ${wc}, estacionamiento = ${estacionamiento}, vendedores_id = ${vendedores_id} WHERE id = ${id}";
 
     // echo $query;
 
@@ -128,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($resultado) {
       // Redireccionar al usuario
-      header('Location: /bienesraices/admin/index.php?resultado=1');
+      header('Location: /bienesraices/admin/index.php?resultado=2');
     }
   }
 }
@@ -145,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <?php endforeach; ?>
 
 
-  <form class="formulario" method="POST" action="/bienesraices/admin/propiedades/crear.php" enctype="multipart/form-data">
+  <form class="formulario" method="POST" enctype="multipart/form-data">
     <fieldset>
       <legend>Información General</legend>
       <label for="titulo">Título:</label>
@@ -154,6 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input type="number" id="precio" placeholder="Precio Propiedad" name="precio" value="<?php echo $precio; ?>">
       <label for="imagen">Imagen:</label>
       <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
+      <img src="/bienesraices/imagenes/<?php echo $imagenPropiedad; ?>" alt="Imagen Propiedad" class="imagen-small">
       <label for="descripcion">Descripción:</label>
       <textarea id="descripcion" name="descripcion"><?php echo $descripcion; ?></textarea>
     </fieldset>
