@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultado = mysqli_query($db, $query);
 
     if ($resultado) {
-      header('Location: /bienesraices/admin/index.php?resultado=3');
+      header('Location: /admin/index.php?resultado=3');
     }
   }
 }
@@ -53,7 +53,7 @@ incluirTemplate('header');
   <?php elseif (intval($resultado) === 3) : ?>
     <p class="alerta exito">Anuncio Eliminado correctamente</p>
   <?php endif; ?>
-  <a href="/bienesraices/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+  <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
   <table class="propiedades">
     <thead>
       <tr>
@@ -70,14 +70,14 @@ incluirTemplate('header');
           <td> <?php echo $propiedad['id']; ?> </td>
           <td> <?php echo $propiedad['titulo']; ?> </td>
           <td>
-            <img src="/bienesraices/imagenes/<?php echo $propiedad['imagen']; ?>" class="imagen-tabla" alt="imagen-propiedad">
+            <img src="/imagenes/<?php echo $propiedad['imagen']; ?>" class="imagen-tabla" alt="imagen-propiedad">
           </td>
           <td>$ <?php echo $propiedad['precio']; ?> </td>
           <td>
             <form method="POST" class="w-100">
               <input type="hidden" name="id" value="<?php echo $propiedad['id']; ?>">
               <input type="submit" class="boton-rojo-block" value="Eliminar">
-              <a href="/bienesraices/admin/propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
+              <a href="/admin/propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
           </td>
         </tr>
       <?php endwhile; ?>

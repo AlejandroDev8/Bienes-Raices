@@ -5,7 +5,7 @@ $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
 
 if (!$id) {
-  header('Location: /bienesraices/index.php');
+  header('Location: /');
 }
 
 // Importar la conexión
@@ -19,7 +19,7 @@ $query = "SELECT * FROM propiedades WHERE id = ${id}";
 $resultadoConsulta = mysqli_query($db, $query);
 
 if (!$resultadoConsulta->num_rows) {
-  header('Location: /bienesraices/index.php');
+  header('Location: /');
 }
 
 $propiedad = mysqli_fetch_assoc($resultadoConsulta);
@@ -29,9 +29,9 @@ incluirTemplate('header');
 ?>
 <main class="contenedor seccion contenido-centrado">
   <h1> <?php echo $propiedad['titulo'] ?> </h1>
-  <img src="/bienesraices/imagenes/<?php echo $propiedad['imagen'] ?>" alt="Imagen de la propiedad" loading="lazy">
+  <img src="/imagenes/<?php echo $propiedad['imagen'] ?>" alt="Imagen de la propiedad" loading="lazy">
   <div class="resumen-propiedad">
-    <class="precio">
+    <div class="precio">
       $ <?php echo $propiedad['precio'] ?>
       <ul class="iconos-caracteristicas">
         <li>
@@ -50,6 +50,7 @@ incluirTemplate('header');
       <p>
         <?php echo $propiedad['descripcion']; ?>
       </p>
+    </div>
   </div>
 </main>
 <?php

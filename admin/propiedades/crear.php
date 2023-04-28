@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($resultado) {
       // Redireccionar al usuario
-      header('Location: /bienesraices/admin/index.php?resultado=1');
+      header('Location: /admin/index.php?resultado=1');
     }
   }
 }
@@ -127,17 +127,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <main class="contenedor seccion">
   <h1>Crear</h1>
-  <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
+  <a href="/admin" class="boton boton-verde">Volver</a>
 
   <?php foreach ($errores as $error) : ?>
-  <div class="alerta error">
-    <?php echo $error; ?>
-  </div>
+    <div class="alerta error">
+      <?php echo $error; ?>
+    </div>
   <?php endforeach; ?>
 
 
-  <form class="formulario" method="POST" action="/bienesraices/admin/propiedades/crear.php"
-    enctype="multipart/form-data">
+  <form class="formulario" method="POST" action="/admin/propiedades/crear.php" enctype="multipart/form-data">
     <fieldset>
       <legend>Información General</legend>
       <label for="titulo">Título:</label>
@@ -152,22 +151,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <fieldset>
       <legend>Información Propiedad</legend>
       <label for="habitaciones">Habitaciones:</label>
-      <input type="number" id="habitaciones" placeholder="Ej: 3" min="1" max="9" name="habitaciones"
-        value="<?php echo $habitaciones; ?>">
+      <input type="number" id="habitaciones" placeholder="Ej: 3" min="1" max="9" name="habitaciones" value="<?php echo $habitaciones; ?>">
       <label for="wc">Baños:</label>
       <input type="number" id="wc" placeholder="Ej: 3" min="1" max="9" name="wc" value="<?php echo $wc; ?>">
       <label for="estacionamiento">Estacionamiento:</label>
-      <input type="number" id="estacionamiento" placeholder="Ej: 3" min="1" max="9" name="estacionamiento"
-        value="<?php echo $estacionamiento; ?>">
+      <input type="number" id="estacionamiento" placeholder="Ej: 3" min="1" max="9" name="estacionamiento" value="<?php echo $estacionamiento; ?>">
     </fieldset>
     <fieldset>
       <legend>Vendedor</legend>
       <select name="vendedores_id">
         <option value="">-- Seleccione --</option>
         <?php while ($vendedor = mysqli_fetch_assoc($result)) : ?>
-        <option <?php echo $vendedores_id === $vendedor['id'] ? 'selected' : ''; ?>
-          value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?>
-        </option>
+          <option <?php echo $vendedores_id === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?>
+          </option>
         <?php endwhile; ?>
       </select>
     </fieldset>

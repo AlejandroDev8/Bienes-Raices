@@ -12,7 +12,8 @@
     padding: 2rem;
   }
 
-  h3, p {
+  h3,
+  p {
     margin: 0;
   }
 }
@@ -21,6 +22,7 @@
   color: $verde;
   font-weight: $bold;
   font-size: 3rem;
+  margin-top: 2rem;
 }
 
 .iconos-caracteristicas {
@@ -33,7 +35,7 @@
     flex: 1;
     display: flex;
   }
-  
+
   img {
     flex: 0 0 3rem;
     margin-right: 1rem;
