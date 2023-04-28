@@ -1,4 +1,4 @@
 node_modules
-src/
+src/**
 gulpfile.js
 package-lock.json
