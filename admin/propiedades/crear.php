@@ -1,4 +1,12 @@
 <?php
+
+require '../../includes/funciones.php';
+$auth = estaAutenticado();
+
+if (!$auth) {
+  header('Location: /');
+}
+
 // Conectar a la base de datos
 require '../../includes/config/database.php';
 $db = conectarDB();
@@ -8,7 +16,6 @@ $db = conectarDB();
 $consulta = "SELECT * FROM vendedores";
 $result = mysqli_query($db, $consulta);
 
-require '../../includes/funciones.php';
 incluirTemplate('header');
 
 // Arreglo con mensajes de errores
