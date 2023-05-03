@@ -4,7 +4,7 @@
 
 Este proyecto es una aplicación web para la gestión de bienes raíces. Como lo son casas y departamentos.
 
-El administrador del sitio web puede crear, editar y eliminar propiedades.
+El administrador del sitio web puede crear, editar y eliminar propiedades. Además de poder crear, editar y eliminar vendedores.
 
 ## Tecnologías
 

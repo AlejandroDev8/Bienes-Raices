@@ -58,7 +58,8 @@ incluirTemplate('header');
   <?php elseif (intval($resultado) === 3) : ?>
     <p class="alerta exito">Anuncio Eliminado correctamente</p>
   <?php endif; ?>
-  <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+  <a href="/admin/propiedades/crear.php" class="boton boton-verde" style="margin-right: 2rem;">Nueva Propiedad</a>
+  <a href="/admin/propiedades/vendedores.php" class="boton boton-verde">Vendedores</a>
   <table class="propiedades">
     <thead>
       <tr>
@@ -82,7 +83,9 @@ incluirTemplate('header');
             <form method="POST" class="w-100">
               <input type="hidden" name="id" value="<?php echo $propiedad['id']; ?>">
               <input type="submit" class="boton-rojo-block" value="Eliminar">
-              <a href="/admin/propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
+            </form>
+            <a href="/admin/propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar
+            </a>
           </td>
         </tr>
       <?php endwhile; ?>

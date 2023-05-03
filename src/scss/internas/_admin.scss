@@ -20,6 +20,12 @@ table.propiedades {
   width: 100%;
   border-spacing: 0;
 
+  tbody {
+    text-align: center;
+    font-weight: $black;
+    font-size: 1.5rem;
+  }
+
   thead {
     background-color: $verde;
   }

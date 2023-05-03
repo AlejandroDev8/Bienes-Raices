@@ -90,10 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errores[] = "La imagen es muy pesada";
   }
 
-  // echo "<pre>";
-  // var_dump($errores);
-  // echo "</pre>";
-
   // Revisar que el arreglo de errores esté vacío
 
   if (empty($errores)) {
@@ -149,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <label for="titulo">Título:</label>
       <input type="text" id="titulo" placeholder="Título Propiedad" name="titulo" value="<?php echo $titulo; ?>">
       <label for="precio">Precio:</label>
-      <input type="number" id="precio" placeholder="Precio Propiedad" name="precio" value="<?php echo $precio; ?>">
+      <input type="number" id="precio" placeholder="Precio Propiedad" name="precio" value="<?php echo $precio; ?>" min="1" max="9999999">
       <label for="imagen">Imagen:</label>
       <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
       <label for="descripcion">Descripción:</label>
@@ -158,11 +154,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <fieldset>
       <legend>Información Propiedad</legend>
       <label for="habitaciones">Habitaciones:</label>
-      <input type="number" id="habitaciones" placeholder="Ej: 3" min="1" max="9" name="habitaciones" value="<?php echo $habitaciones; ?>">
+      <input type="number" id="habitaciones" placeholder="Ej: 3" min="0" max="9" name="habitaciones" value="<?php echo $habitaciones; ?>">
       <label for="wc">Baños:</label>
-      <input type="number" id="wc" placeholder="Ej: 3" min="1" max="9" name="wc" value="<?php echo $wc; ?>">
+      <input type="number" id="wc" placeholder="Ej: 3" min="0" max="9" name="wc" value="<?php echo $wc; ?>">
       <label for="estacionamiento">Estacionamiento:</label>
-      <input type="number" id="estacionamiento" placeholder="Ej: 3" min="1" max="9" name="estacionamiento" value="<?php echo $estacionamiento; ?>">
+      <input type="number" id="estacionamiento" placeholder="Ej: 3" min="0" max="9" name="estacionamiento" value="<?php echo $estacionamiento; ?>">
     </fieldset>
     <fieldset>
       <legend>Vendedor</legend>
@@ -179,5 +175,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 
 <?php
+mysqli_close($db);
 incluirTemplate('footer');
 ?>
