@@ -4,7 +4,7 @@ require '../../includes/funciones.php';
 $auth = estaAutenticado();
 
 if (!$auth) {
-  header('Location: /');
+  header('Location: /login.php');
 }
 
 $id = $_GET['id'];

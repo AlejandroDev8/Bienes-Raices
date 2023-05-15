@@ -3,7 +3,7 @@ require '../includes/funciones.php';
 $auth = estaAutenticado();
 
 if (!$auth) {
-  header('Location: /');
+  header('Location: /login.php');
 }
 
 // Importa la DB

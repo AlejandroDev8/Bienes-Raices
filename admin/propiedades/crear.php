@@ -4,7 +4,7 @@ require '../../includes/funciones.php';
 $auth = estaAutenticado();
 
 if (!$auth) {
-  header('Location: /');
+  header('Location: /login.php');
 }
 
 // Conectar a la base de datos

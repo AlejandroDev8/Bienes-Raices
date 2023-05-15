@@ -3,7 +3,7 @@ require '../../includes/funciones.php';
 
 $auth = estaAutenticado();
 if (!$auth) {
-  header('Location: /');
+  header('Location: /login.php');
 }
 
 require '../../includes/config/database.php';
