@@ -71,7 +71,7 @@ incluirTemplate('header');
     <fieldset>
       <legend>Información de Contacto</legend>
       <label for="telefono">Teléfono:</label>
-      <input type="number" id="telefono" placeholder="Teléfono Vendedor" name="telefono" max="10">
+      <input type="number" id="telefono" placeholder="Teléfono Vendedor" name="telefono">
       <label for="email">Email:</label>
       <input type="email" id="email" placeholder="Email Vendedor" name="email">
     </fieldset>
